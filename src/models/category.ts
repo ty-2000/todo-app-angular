@@ -5,7 +5,7 @@ type Color = {
 }
 
 export interface Category {
-  id?:        number;
+  id:        number;
   name:       string;
   slug:       string;
   color:      Color;

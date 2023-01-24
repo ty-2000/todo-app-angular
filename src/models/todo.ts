@@ -6,7 +6,7 @@ type Status = {
 
 export interface Todo {
   category_id: number;
-  id?:        number;
+  id:        number;
   title:      string;
   body:       string;
   state:      Status;
