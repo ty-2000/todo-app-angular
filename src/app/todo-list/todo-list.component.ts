@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Todo } from 'src/models/todo';
 import { Category } from 'src/models/category';
-import { CATEGORIES } from 'src/mock/category';
-import { TODOS } from 'src/mock/todo';
+import { TodoService } from '../todo.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -11,26 +10,24 @@ import { TODOS } from 'src/mock/todo';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  todoList = TODOS
-  categoryList = CATEGORIES
 
-  todoWithCategories = this.todoList.map(todo => {
-    return {
-      todo: todo, 
-      category: this.getCategory(todo.category_id)
-    }
-  })
+  todoList: { todo: Todo, category: Category }[] = []
 
-  getCategory(id: number): Category {
-    const category = this.categoryList.find(category => category.id == id)
-    if (category == null) {
-      throw new Error("Undefined category is inferred")
-    } 
-    return category
+  getTodoList(): void {
+    this.todoService.getTodos().subscribe(todos => 
+      this.todoService.getCategories().subscribe(categories => 
+        this.todoList = todos.map(todo => {
+          const category = categories.find(category => todo.category_id == category.id)
+          if (category == null) { throw new Error('category is not defined')}
+          return { todo: todo, category: category }
+        })))
   }
 
-  constructor() { }
+  constructor(
+    private todoService: TodoService
+  ) { }
 
   ngOnInit(): void {
+    this.getTodoList();
   }
 }
