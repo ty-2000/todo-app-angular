@@ -2,9 +2,11 @@
 
 <ul class="todos">
   <li *ngFor="let todo of todoList">
-    <button type="button">
-      <span class="badge">{{todo.todo.title}}</span>
-      <span class="name">{{todo.category.name}}</span>
-    </button>
+    <a routerLink="">
+      <h5 class="title"><font color={{todo.category.color.name}}>{{todo.todo.title}}</font></h5>
+      <p class="category">{{todo.category.name}}</p>
+      <p class="body">{{todo.todo.body}}</p>
+      <p class="state">{{todo.todo.state.name}}</p>
+    </a>
   </li>
 </ul>
