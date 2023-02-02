@@ -37,6 +37,16 @@ export class TodoListComponent implements OnInit, OnDestroy {
             })))
   }
 
+  add(): void {
+    this.todoService.addTodo(this.addForm.value as Todo)
+      .pipe(takeUntil(this.onDestroy$), )
+      .subscribe(todo => {
+        const category = this.categories.find(category => todo.category_id == category.id)
+        if (category == null) { throw new Error('category is not defined')}
+        this.todoList.push({ todo: todo, category: category})
+      })
+  }
+
   ngOnDestroy() {
     this.onDestroy$.emit()
   }
@@ -47,5 +57,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getTodoList();
+    this.todoService.getCategories()
+      .pipe(takeUntil(this.onDestroy$),)
+      .subscribe(categories => this.categories = categories);
   }
 }

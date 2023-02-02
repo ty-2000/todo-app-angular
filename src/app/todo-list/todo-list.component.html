@@ -10,3 +10,21 @@
     </a>
   </li>
 </ul>
+
+<div>
+  <form [formGroup]="addForm" (ngSubmit)="add()">
+
+    <label for="title">TITLE: </label>
+    <input id="title" type="text" formControlName="title">
+
+    <label for="body">BODY: </label>
+    <input id="body" type="text" formControlName="body">
+
+    <label id="categoryId">CATEGORY: </label>
+    <select id="categoryId" formControlName="category_id">
+      <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+    </select>
+
+    <button type="submit" [disabled]="!addForm.valid">Submit</button>
+  </form>
+</div>
