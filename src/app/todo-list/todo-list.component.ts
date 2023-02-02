@@ -4,6 +4,7 @@ import { Todo } from 'src/models/todo';
 import { Category } from 'src/models/category';
 import { TodoService } from '../todo.service';
 import { takeUntil } from 'rxjs/operators';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-list',
@@ -14,6 +15,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
   private readonly onDestroy$ = new EventEmitter();
 
   todoList: { todo: Todo, category: Category }[] = []
+  categories: Category[] = []
+  addForm = new FormGroup({
+    title:        new FormControl(''), 
+    body:         new FormControl(''), 
+    state:        new FormControl(Status.TODO), 
+    category_id:  new FormControl(),
+  })
 
   getTodoList(): void {
     this.todoService.getTodos()
