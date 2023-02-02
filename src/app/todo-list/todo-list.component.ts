@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, EventEmitter } from '@angular/core';
 
-import { Todo } from 'src/models/todo';
+import { Status, Todo } from 'src/models/todo';
 import { Category } from 'src/models/category';
 import { TodoService } from '../todo.service';
 import { takeUntil } from 'rxjs/operators';

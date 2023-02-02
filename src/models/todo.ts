@@ -1,8 +1,11 @@
 
-type Status = {
-  code: number;
-  name: string
-}
+export const Status = {
+  TODO: {code:0, name:"TODO"}, 
+  IN_PROGRESS: {code: 1, name:"進行中"}, 
+  DONE: {code: 2, name:"DONE"}
+} as const
+
+type Status = typeof Status[keyof typeof Status];
 
 export interface Todo {
   category_id: number;
