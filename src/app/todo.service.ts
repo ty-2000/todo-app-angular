@@ -21,7 +21,7 @@ export class TodoService {
     return this.http.get<Todo[]>(this.todosUrl)
       .pipe(
         tap(todos => console.log('fetched todos')),
-        catchError(this.handleError<Todo[]>('getHeroes', []))
+        catchError(this.handleError<Todo[]>('getTodos', []))
       );
   }
 
@@ -29,7 +29,7 @@ export class TodoService {
     return this.http.get<Category[]>(this.categoriesUrl)
       .pipe(
         tap(categories => console.log('fetched categories')),
-        catchError(this.handleError<Category[]>('getHeroes', []))
+        catchError(this.handleError<Category[]>('getCategories', []))
       );
 }
 
