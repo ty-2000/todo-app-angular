@@ -54,7 +54,7 @@ export class TodoService {
 
   updateTodo(todo: Todo): Observable<any> {
     return this.http.put(this.todosUrl, todo, this.httpOptions).pipe(
-      tap(_ => console.log(`updated todo id=${todo.id}`)), 
+      tap(_ => console.log(`updated todo id=${todo.id},title=${todo.title},body=${todo.body},state={code=${todo.state.code},name=${todo.state.name}}`)), 
       catchError(this.handleError<any>('updateTodo'))
     )
   }
