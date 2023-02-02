@@ -1,0 +1,26 @@
+
+<div *ngIf="todo">
+    <form [formGroup]="editForm" (ngSubmit)="save()">
+  
+      <label for="title">TITLE: </label>
+      <input id="title" type="text" formControlName="title" >
+  
+      <label for="body">BODY: </label>
+      <textarea id="body" type="text" formControlName="body"> </textarea>
+  
+      <label id="category">CATEGORY: </label>
+      <select id="category" formControlName="category_id">
+        <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+      </select>
+
+      <label id="status">STATUS: </label>
+      <select id="status" formControlName="state">
+        <option *ngFor="let state of allStatusType" [ngValue]="state">{{state.name}}</option>
+      </select>
+  
+      <button type="submit" [disabled]="!editForm.valid">Submit</button>
+      <p>Form Status: {{ editForm.value.state.name }}</p>
+      <p>{{todo.state.code}}</p>
+    </form>
+</div>
+<!-- <button type="button" (click)="goBack()">go back</button> -->
