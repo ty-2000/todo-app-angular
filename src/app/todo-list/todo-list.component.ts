@@ -16,6 +16,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   todoList: { todo: Todo, category: Category }[] = []
   categories: Category[] = []
+  
   addForm = new FormGroup({
     title:        new FormControl('', Validators.required), 
     body:         new FormControl(''), 
@@ -29,12 +30,16 @@ export class TodoListComponent implements OnInit, OnDestroy {
       .subscribe(todos => 
         this.todoService.getCategories()
           .pipe(takeUntil(this.onDestroy$),)
-          .subscribe(categories => 
+          .subscribe(categories =>{ 
+            this.categories = categories;
             this.todoList = todos.map(todo => {
               const category = categories.find(category => todo.category_id == category.id)
               if (category == null) { throw new Error('category is not defined')}
               return { todo: todo, category: category }
-            })))
+            });
+          }
+        )
+      )
   }
 
   add(): void {
@@ -57,8 +62,5 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getTodoList();
-    this.todoService.getCategories()
-      .pipe(takeUntil(this.onDestroy$),)
-      .subscribe(categories => this.categories = categories);
   }
 }
