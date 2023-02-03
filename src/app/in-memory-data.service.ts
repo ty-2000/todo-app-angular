@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Todo } from 'src/models/todo';
+import { Todo, Status } from 'src/models/todo';
 import { Category } from 'src/models/category';
 
 @Injectable({
@@ -10,9 +10,9 @@ export class InMemoryDataService implements InMemoryDbService{
 
   createDb() {
     const todos = [
-      { category_id:1, id: 1, title:"Scalaの基礎", body:"Scalaの研修-Option", state:{code:0, name:"TODO"}, updatedAt:new Date(2020, 8, 21, 21, 10, 5), createdAt:new Date(2020, 8, 21, 21, 10, 5)}, 
-      { category_id:3, id: 2, title:"DBとの接続", body:"DBから情報を取得", state:{code:1, name:"DONE"}, updatedAt:new Date(2021, 8, 21, 21, 10, 5), createdAt:new Date(2021, 8, 21, 21, 10, 5)}, 
-      { category_id:2, id: 3, title:"ビューを作る", body:"フォームの作成", state:{code:2, name:"進行中"}, updatedAt:new Date(2022, 8, 21, 21, 10, 5), createdAt:new Date(2022, 8, 21, 21, 10, 5)}, 
+      { category_id:1, id: 1, title:"Scalaの基礎", body:"Scalaの研修-Option", state:Status.TODO, updatedAt:new Date(2020, 8, 21, 21, 10, 5), createdAt:new Date(2020, 8, 21, 21, 10, 5)}, 
+      { category_id:3, id: 2, title:"DBとの接続", body:"DBから情報を取得", state:Status.IN_PROGRESS, updatedAt:new Date(2021, 8, 21, 21, 10, 5), createdAt:new Date(2021, 8, 21, 21, 10, 5)}, 
+      { category_id:2, id: 3, title:"ビューを作る", body:"フォームの作成", state:Status.DONE, updatedAt:new Date(2022, 8, 21, 21, 10, 5), createdAt:new Date(2022, 8, 21, 21, 10, 5)}, 
     ];
     const categories = [
       { id:1, name: "プログラミング", slug: "program", color:{code:0, name:"red"}, updatedAt:new Date(2020, 8, 21, 21, 10, 5), createdAt:new Date(2020, 8, 21, 21, 10, 5)}, 
