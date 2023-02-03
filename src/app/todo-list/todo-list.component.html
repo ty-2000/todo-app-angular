@@ -2,7 +2,7 @@
 
 <ul class="todos">
   <li *ngFor="let todo of todoList">
-    <a routerLink="">
+    <a routerLink="/todos/{{todo.todo.id}}">
       <h5 class="title"><font color={{todo.category.color.name}}>{{todo.todo.title}}</font></h5>
       <p class="category">{{todo.category.name}}</p>
       <p class="body">{{todo.todo.body}}</p>
