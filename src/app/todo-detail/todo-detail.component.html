@@ -14,7 +14,7 @@
       </select>
 
       <label id="status">STATUS: </label>
-      <select id="status" formControlName="state">
+      <select id="status" formControlName="state" [compareWith]="compareState">
         <option *ngFor="let state of allStatusType" [ngValue]="state">{{state.name}}</option>
       </select>
   

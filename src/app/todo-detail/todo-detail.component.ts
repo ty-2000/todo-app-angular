@@ -70,4 +70,8 @@ export class TodoDetailComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.onDestroy$.emit()
   }
+
+  compareState(state1: Status, state2: Status): boolean {
+    return state1.code === state2.code
+  }
 }
