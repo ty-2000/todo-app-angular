@@ -8,6 +8,8 @@
       <p class="body">{{todo.todo.body}}</p>
       <p class="state">{{todo.todo.state.name}}</p>
     </a>
+    <button type="button" class="delete" title="delete todo"
+    (click)="delete(todo.todo)">x</button>
   </li>
 </ul>
 

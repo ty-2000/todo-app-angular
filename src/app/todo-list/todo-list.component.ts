@@ -52,6 +52,13 @@ export class TodoListComponent implements OnInit, OnDestroy {
       })
   }
 
+  delete(todo: Todo): void {
+    this.todoList = this.todoList.filter(t => t.todo !== todo);
+    this.todoService.deleteTodo(todo.id)
+      .pipe(takeUntil(this.onDestroy$),)
+      .subscribe();
+  }
+
   ngOnDestroy() {
     this.onDestroy$.emit()
   }
